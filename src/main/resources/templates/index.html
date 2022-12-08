@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${category}"></title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <style>
+        .card {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div class="m-3 mt-3">
+    <img style="width: 100px; height: 100px" src="https://www.interpol.int/bundles/interpolfront/images/logo.png">
+    <span style="font-weight: bold; font-size: 30px" th:text="${category}"></span>
+</div>
+<div class="m-3 mt-3">
+    <div>
+        <button onclick="location.href = '/red'" type="button" class="btn btn-danger">Red Notice</button>
+        <button onclick="location.href = '/yellow'" type="button" class="btn btn-warning">Yellow Notice</button>
+    </div>
+</div>
+<div>
+    <th:block th:each="person : ${persons}">
+        <div class="card m-3 mb-3" style="max-width: 400px; min-width: 400px">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img style="width: 100px; height: 100px;" th:src="${person.getImage()}" class="card-img-top" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <span>ID: </span>
+                        <h5 class="card-title" th:text="${person.getEntityId()}"></h5>
+                        <span>First name: </span>
+                        <p class="card-text" th:text="${person.getFirstName()}"></p>
+                        <span>Second name: </span>
+                        <p class="card-text" th:text="${person.getSecondName()}"></p>
+                        <span>Birth date: </span>
+                        <p class="card-text" th:text="${person.getBirthDate()}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</div>
+</body>
+</html>
